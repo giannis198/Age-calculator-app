@@ -31,8 +31,8 @@ const formSchema = z.object({
     .number()
     .int()
     .min(1)
-    .gt(0, { message: "Must be a valid month" }),
-  // .lte(12, { message: "Must be a valid month" }),
+    .gt(0, { message: "Must be a valid month" })
+    .lte(12, { message: "Must be a valid month" }),
 
   year: z.coerce
     .number()
