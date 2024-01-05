@@ -43,7 +43,7 @@ const HomePage = () => {
 
   return (
     <section className="bg-off_white min-h-svh max-w-[1440px] mx-auto pt-20 lg:py-40 lg:px-[400px]">
-      <div className="bg-white max-w-[93%] rounded-[25px] mx-auto rounded-br-[130px] px-8 py-12 space-y-16 lg:space-y-10">
+      <div className="bg-white max-w-[93%] rounded-[25px] mx-auto rounded-br-[130px] px-7 py-12 space-y-16 lg:space-y-10">
         <InputForm onSubmit={handleSubmit} />
         <Result age={age} />
       </div>
