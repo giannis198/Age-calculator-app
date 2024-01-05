@@ -1,8 +1,8 @@
-interface ResultProps {
+export interface ResultProps {
   age: {
-    days: number;
-    months: number;
-    years: number;
+    day: number | string;
+    month: number | string;
+    year: number | string;
   };
 }
 
@@ -11,13 +11,18 @@ const Result = ({ age }: ResultProps) => {
     <section>
       <div className="text-[3.2rem] font-extrabold italic leading-[3rem]">
         <h1>
-          <span className="text-purple pr-2">{age.years}</span>years
+          <span className="text-purple pr-2">{age.year ? age.year : "--"}</span>
+          years
         </h1>
         <h1>
-          <span className="text-purple pr-2">{age.months}</span>months
+          <span className="text-purple pr-2">
+            {age.month ? age.month : "--"}
+          </span>
+          months
         </h1>
         <h1>
-          <span className="text-purple pr-2">{age.days}</span>days
+          <span className="text-purple pr-2">{age.day ? age.day : "--"}</span>
+          days
         </h1>
       </div>
     </section>

@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Circle, icons } from "lucide-react";
 import Image from "next/image";
 
 const currentYear = new Date().getFullYear();
@@ -33,6 +32,7 @@ const formSchema = z.object({
     .int()
     .lte(12, { message: "Must be a valid month" })
     .gte(0, { message: "Must be a valid month" }),
+
   year: z.coerce
     .number()
     .min(4, { message: "Must be a valid year" })
@@ -40,25 +40,26 @@ const formSchema = z.object({
     .lt(currentYear, { message: "Must be in the past" }),
 });
 
-const InputForm = () => {
+const InputForm: React.FC<{
+  onSubmit: (values: { day: number; month: number; year: number }) => void;
+}> = (props) => {
+  const { onSubmit } = props;
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      day: 0,
+      month: 0,
+      year: 1990,
+    },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-
-    const userBirthday = Object.values(values);
-    console.log(userBirthday);
-
-    const currentDate = new Date();
-    console.log(currentDate);
+  function submitForm(values: z.infer<typeof formSchema>) {
+    onSubmit(values);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-16">
+      <form onSubmit={form.handleSubmit(submitForm)} className="space-y-16">
         <div className="flex gap-4">
           <FormField
             control={form.control}
