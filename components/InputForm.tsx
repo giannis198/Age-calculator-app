@@ -29,16 +29,16 @@ const formSchema = z.object({
 
   month: z.coerce
     .number()
-    .int()
-    .min(1)
+    .lte(12, { message: "Must be a valid month" })
     .gt(0, { message: "Must be a valid month" })
-    .lte(12, { message: "Must be a valid month" }),
+    .int()
+    .min(1),
 
   year: z.coerce
     .number()
     .min(4, { message: "Must be a valid year" })
     .int()
-    .lt(currentYear, { message: "Must be in the past" }),
+    .lte(currentYear, { message: "Must be in the past" }),
 });
 
 const InputForm: React.FC<{
