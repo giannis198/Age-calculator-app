@@ -24,14 +24,15 @@ const formSchema = z.object({
     .number()
     .lte(31, { message: "Must be a valid day" })
     .gt(0, { message: "Must be a valid day" })
-    .int(),
+    .int()
+    .min(1),
 
   month: z.coerce
     .number()
-    .min(1)
     .int()
-    .lte(12, { message: "Must be a valid month" })
-    .gte(0, { message: "Must be a valid month" }),
+    .min(1)
+    .gt(0, { message: "Must be a valid month" }),
+  // .lte(12, { message: "Must be a valid month" }),
 
   year: z.coerce
     .number()
@@ -59,8 +60,11 @@ const InputForm: React.FC<{
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(submitForm)} className="space-y-16">
-        <div className="flex gap-4">
+      <form
+        onSubmit={form.handleSubmit(submitForm)}
+        className="space-y-16 lg:space-y-10"
+      >
+        <div className="flex gap-4 lg:w-[80%]">
           <FormField
             control={form.control}
             name="day"
@@ -111,7 +115,7 @@ const InputForm: React.FC<{
 
           <Button
             size="icon"
-            className="rounded-full w-16 h-16 bg-purple absolute translate-y-[-50%]"
+            className="rounded-full w-16 h-16 lg:right-0 bg-purple absolute translate-y-[-50%]"
             type="submit"
           >
             <Image

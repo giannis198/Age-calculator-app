@@ -47,3 +47,15 @@ export function calculateAge({ values }: calculateAgeProps) {
     console.log("Error", error);
   }
 }
+
+export function isValidDate({ values }: calculateAgeProps) {
+  var d = new Date(values.year, values.month, values.day);
+  if (
+    d.getFullYear() == values.year &&
+    d.getMonth() == values.month &&
+    d.getDate() == values.day
+  ) {
+    return true;
+  }
+  return false;
+}

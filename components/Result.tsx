@@ -11,17 +11,21 @@ const Result = ({ age }: ResultProps) => {
     <section>
       <div className="text-[3.2rem] font-extrabold italic leading-[3rem]">
         <h1>
-          <span className="text-purple pr-2">{age.year ? age.year : "--"}</span>
+          <span className="text-purple pr-2.5">
+            {age.year ? age.year : "- -"}
+          </span>
           years
         </h1>
         <h1>
-          <span className="text-purple pr-2">
-            {age.month ? age.month : "--"}
+          <span className="text-purple pr-2.5">
+            {age.month ? age.month : "- -"}
           </span>
           months
         </h1>
         <h1>
-          <span className="text-purple pr-2">{age.day ? age.day : "--"}</span>
+          <span className="text-purple pr-2.5">
+            {age.day ? age.day : "- -"}
+          </span>
           days
         </h1>
       </div>

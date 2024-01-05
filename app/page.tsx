@@ -2,7 +2,7 @@
 
 import InputForm from "@/components/InputForm";
 import Result from "@/components/Result";
-import { calculateAge } from "@/lib/utils";
+import { calculateAge, isValidDate } from "@/lib/utils";
 import { useState } from "react";
 
 // const testAge = {
@@ -30,7 +30,9 @@ const HomePage = () => {
     year: number;
   }) => {
     const age: AgeProps | undefined = calculateAge({ values });
+
     if (age) {
+      isValidDate({ values });
       setAge(age);
     } else {
       console.error("Failed to calculate age");
@@ -40,8 +42,8 @@ const HomePage = () => {
   };
 
   return (
-    <section className="bg-off_white min-h-svh max-w-[1440px] mx-auto flex align-center justify-center py-48 lg:px-[450px]">
-      <div className="bg-white max-w-[93%] rounded-[25px] rounded-br-[130px] px-6 py-12 space-y-14">
+    <section className="bg-off_white min-h-svh max-w-[1440px] mx-auto pt-20 lg:py-40 lg:px-[400px]">
+      <div className="bg-white max-w-[93%] rounded-[25px] mx-auto rounded-br-[130px] px-8 py-12 space-y-16 lg:space-y-10">
         <InputForm onSubmit={handleSubmit} />
         <Result age={age} />
       </div>
